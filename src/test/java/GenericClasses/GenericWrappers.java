@@ -1,8 +1,9 @@
+package GenericClasses;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
@@ -10,20 +11,19 @@ import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.util.concurrent.TimeUnit;
 
 public class GenericWrappers {
 
     WebDriver driver;
     Actions actions;
 
-    GenericWrappers(String url){
-        System.setProperty("webdriver.chrome.driver","/Users/jl/Documents/GitHub/ListingToFlipKart/chromedriver");
-        driver=new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get(url);
-        driver.manage().window().maximize();
+    public GenericWrappers(WebDriver driver){
+        this.driver=driver;
         actions = new Actions(driver);
+    }
+
+    public GenericWrappers() {
+
     }
 
     public GenericWrappers sendKeysWithXpath(String xpath,String value){
