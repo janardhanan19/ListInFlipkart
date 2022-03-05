@@ -25,6 +25,7 @@ public class PriceStockData {
                 .scrollToViewElement("//div[text()='Procurement SLA']")
                 .sendKeysWithXpath("//input[@id='shipping_days']", "1")
                 .sendKeysWithXpath("//input[@id='stock_size']", "10")
+                .selectByXpath("//select[@id='shipping_provider']", "FLIPKART")
                 .sendKeysWithXpath("//input[@id='local_shipping_fee_from_buyer']", "0")
                 .sendKeysWithXpath("//input[@id='zonal_shipping_fee_from_buyer']", "0")
                 .sendKeysWithXpath("//input[@id='national_shipping_fee_from_buyer']", "0")
@@ -44,7 +45,7 @@ public class PriceStockData {
                 .sleep(1000)
                 .actionMoveToElement("//span[text()='Price, Stock and Shipping Information']//parent::div/div[2]/div/div/button")
                 .actionMouseClick()
-                .sleep(1000);
+                .sleep(3000);
     }
 }
 

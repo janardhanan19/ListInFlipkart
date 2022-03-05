@@ -33,7 +33,7 @@ public class InitialSetup {
                 .clickWithXpath("//button[text()='Close']")
                 .clickWithXpath("//div[contains(@class,'styles__VerticalCard')]")
 
-                .sleep(1000)
+                .sleep(2000)
                 .clickWithXpath("//span[text()='Select Brand']")
                 .clickWithXpath("//span[text()='Rustic Indi Fashion']")
                 .clickWithXpath("//button[text()='Create New Listing']");

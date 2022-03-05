@@ -17,7 +17,7 @@ public class ListInFlipKartTest {
     @BeforeTest()
     public void setup(){
         String url = "https://seller.flipkart.com/sell-online/";
-        System.setProperty("webdriver.chrome.driver","/Users/jl/Documents/GitHub/ListingToFlipKart/chromedriver");
+        System.setProperty("webdriver.chrome.driver","C:\\ListInFlipkart\\chromedriver.exe");
         driver=new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(url);
@@ -32,19 +32,26 @@ public class ListInFlipKartTest {
                 .clickWithXpath("//div[contains(@class,'styles__AddProductImage')]")
                 .clickWithXpath("//div[contains(@class,'styles__ImageWrapper')]")
                 .sleep(2000)
+                .scrollToViewElement("//label/div/button[contains(@class,'BaseButton-sc-1')]/div")
                 .actionMoveToElement("//label/div/button[contains(@class,'BaseButton-sc-1')]/div")
                 .actionMouseClick()
                 .sleep(2000)
+                  //.sendKeysWithXpath("//label/div/button[contains(@class,'BaseButton-sc-1')]/div","C:\\Users\\janar\\Desktop\\LISTING1\\D12BLUE.jpg")
+//                .uploadAttachment("C:\\Users\\janar\\Desktop\\LISTING1\\D12BLUE.jpg")  //dynamic
+                .fileUpload("C:\\Users\\janar\\Desktop\\LISTING1\\D12BLUE.jpg", GenericWrappers.Action.WIN)
+                .sleep(5000)
+                .clickWithXpath("//div[contains(@class,'styles__ImageWrapper')]")
 
-                .uploadAttachment("/Users/jl/Downloads/drive-download-20220303T120852Z-001/D12BLUE.jpg");  //dynamic
-//                .sleep(5000)
-//                .clickWithXpath("//div[contains(@class,'styles__ImageWrapper')]")
-//
-//                .actionMoveToElement("//label/div/button[contains(@class,'BaseButton-sc-1')]/div")
-//                .actionMouseClick()
-//                .sleep(3000)
-//
-//            .uploadAttachment("/Users/jl/Downloads/drive-download-20220303T120852Z-001/BLUEBACK.jpg");  //dynamic
+                .actionMoveToElement("//label/div/button[contains(@class,'BaseButton-sc-1')]/div")
+                .actionMouseClick()
+                .sleep(3000)
+                .fileUpload("C:\\Users\\janar\\Desktop\\LISTING1\\BLUEBACK.jpg", GenericWrappers.Action.WIN)
+                .sleep(3000)
+                .actionMoveToElement("//span[text()='Product Photos']//parent::div/div[2]/div/div/button")
+                .actionMouseClick()
+                .sleep(3000);
+
+        //.uploadAttachment("/Users/jl/Downloads/drive-download-20220303T120852Z-001/BLUEBACK.jpg");  //dynamic
 
         new PriceStockData(driver).fillPriceStockData();
         new ProductDescription(driver).fillProductDescription();

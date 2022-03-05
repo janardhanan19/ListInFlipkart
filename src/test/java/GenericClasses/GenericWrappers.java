@@ -5,7 +5,11 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.LocalFileDetector;
+import org.openqa.selenium.remote.RemoteWebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
@@ -87,31 +91,83 @@ public class GenericWrappers {
             e.printStackTrace();
         }
 // Cmd + Tab is needed since it launches a Java app and the browser looses focus
-        robot.keyPress(KeyEvent.VK_META);
-        robot.keyPress(KeyEvent.VK_TAB);
-        robot.keyRelease(KeyEvent.VK_META);
-        robot.keyRelease(KeyEvent.VK_TAB);
-        robot.delay(1000);
-//Open Goto window
-        robot.keyPress(KeyEvent.VK_META);
-        robot.keyPress(KeyEvent.VK_SHIFT);
-        robot.keyPress(KeyEvent.VK_G);
-        robot.keyRelease(KeyEvent.VK_META);
-        robot.keyRelease(KeyEvent.VK_SHIFT);
-        robot.keyRelease(KeyEvent.VK_G);
-//Paste the clipboard value
-        robot.keyPress(KeyEvent.VK_META);
-        robot.keyPress(KeyEvent.VK_V);
-        robot.keyRelease(KeyEvent.VK_META);
-        robot.keyRelease(KeyEvent.VK_V);
+//        robot.keyPress(KeyEvent.VK_META);
+//        robot.keyPress(KeyEvent.VK_TAB);
+//        robot.keyRelease(KeyEvent.VK_META);
+//        robot.keyRelease(KeyEvent.VK_TAB);
+//        robot.delay(1000);
+////Open Goto window
+//        robot.keyPress(KeyEvent.VK_META);
+//        robot.keyPress(KeyEvent.VK_SHIFT);
+//        robot.keyPress(KeyEvent.VK_G);
+//        robot.keyRelease(KeyEvent.VK_META);
+//        robot.keyRelease(KeyEvent.VK_SHIFT);
+//        robot.keyRelease(KeyEvent.VK_G);
+////Paste the clipboard value
+//        robot.keyPress(KeyEvent.VK_META);
+//        robot.keyPress(KeyEvent.VK_V);
+//        robot.keyRelease(KeyEvent.VK_META);
+//        robot.keyRelease(KeyEvent.VK_V);
+//
+////Press Enter key to close the Goto window and Upload window
+//        robot.keyPress(KeyEvent.VK_ENTER);
+//        robot.keyRelease(KeyEvent.VK_ENTER);
+//        robot.delay(1000);
+//        robot.keyPress(KeyEvent.VK_ENTER);
+//        robot.keyRelease(KeyEvent.VK_ENTER);
+//        robot.delay(1000);
+        return this;
+    }
 
-//Press Enter key to close the Goto window and Upload window
-        robot.keyPress(KeyEvent.VK_ENTER);
-        robot.keyRelease(KeyEvent.VK_ENTER);
-        robot.delay(1000);
-        robot.keyPress(KeyEvent.VK_ENTER);
-        robot.keyRelease(KeyEvent.VK_ENTER);
-        robot.delay(1000);
+    public enum Action {
+        WIN, MAC, LINUX, SEND_KEYS, FILE_DETECTOR;
+    }
+    public GenericWrappers fileUpload( String filePath, Action type) {
+
+            try {
+                Thread.sleep( 1000 * 5 );
+
+                StringSelection stringSelection= new StringSelection(filePath);
+                Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+
+                Robot robot = new Robot();
+                if( type == Action.MAC ) { // Apple's Unix-based operating system.
+
+                    robot.keyPress(KeyEvent.VK_META);
+                    robot.keyPress(KeyEvent.VK_SHIFT);
+                    robot.keyPress(KeyEvent.VK_G);
+                    robot.keyRelease(KeyEvent.VK_G);
+                    robot.keyRelease(KeyEvent.VK_SHIFT);
+                    robot.keyRelease(KeyEvent.VK_META);
+
+                    // Paste the clipBoard content - Command ⌘ + V.
+                    robot.keyPress(KeyEvent.VK_META);
+                    robot.keyPress(KeyEvent.VK_V);
+                    robot.keyRelease(KeyEvent.VK_V);
+                    robot.keyRelease(KeyEvent.VK_META);
+
+                    // Press Enter (GO - To bring up the file.)
+                    robot.keyPress(KeyEvent.VK_ENTER);
+                    robot.keyRelease(KeyEvent.VK_ENTER);
+                    return this;
+                } else if ( type == Action.WIN || type == Action.LINUX ) { // Ctrl + V to paste the content.
+
+                    robot.keyPress(KeyEvent.VK_CONTROL);
+                    robot.keyPress(KeyEvent.VK_V);
+                    robot.keyRelease(KeyEvent.VK_V);
+                    robot.keyRelease(KeyEvent.VK_CONTROL);
+                }
+
+                robot.delay( 1000 * 4 );
+
+                robot.keyPress(KeyEvent.VK_ENTER);
+                robot.keyRelease(KeyEvent.VK_ENTER);
+                return this;
+            } catch (AWTException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         return this;
     }
 }

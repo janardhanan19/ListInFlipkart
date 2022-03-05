@@ -39,7 +39,7 @@ public class AdditionalDescription {
                 .sleep(1000)
                 .clickWithXpath("//div[text()='Search Keywords']//parent::div/parent::div/parent::div/div[2]/div/div[5]/button")
 
-
+                .scrollToViewElement("//div[text()='Key Features']//parent::div/parent::div/parent::div/div[2]/div/div/div/input")
                 .sendKeysWithXpath("//div[text()='Key Features']//parent::div/parent::div/parent::div/div[2]/div/div/div/input", "Fabric Type: Cotton Blend Premium Quality")
                 .sleep(1000)
                 .clickWithXpath("//div[text()='Key Features']//parent::div/parent::div/parent::div/div[2]/div/div[1]/button")

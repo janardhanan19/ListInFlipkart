@@ -26,6 +26,7 @@ public class ProductDescription {
                 .selectByXpath("//select[@id='color']","Blue")
                 .sleep(1000)
                 .actionMoveToElement("//span[text()='Product Description']//parent::div/div[2]/div/div/button")
-                .actionMouseClick();
+                .actionMouseClick()
+                .sleep(3000);
     }
 }
