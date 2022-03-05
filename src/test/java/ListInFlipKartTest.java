@@ -53,8 +53,8 @@ public class ListInFlipKartTest {
 
         //.uploadAttachment("/Users/jl/Downloads/drive-download-20220303T120852Z-001/BLUEBACK.jpg");  //dynamic
 
-        new PriceStockData(driver).fillPriceStockData();
-        new ProductDescription(driver).fillProductDescription();
+        new PriceStockData(driver).fillPriceStockData("D12","Blue","S2");
+        new ProductDescription(driver).fillProductDescription("D12","Blue","S");
         new AdditionalDescription(driver).fillAdditionalDescription();
 
     }
