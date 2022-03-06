@@ -177,4 +177,13 @@ public class GenericWrappers {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
         return this;
     }
+
+
+    public GenericWrappers waitUntilElementIsVisible(String xpath){
+        WebDriverWait wait = new WebDriverWait(driver,30);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+//        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(xpath))));
+        return this;
+    }
+
 }

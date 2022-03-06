@@ -52,6 +52,7 @@ public class PriceStockData {
 
 
         new GenericWrappers(driver)
+                .sleep(2000)
                 .clickWithXpath("//span[text()='Price, Stock and Shipping Information']//parent::div/div/button")
                 .sendKeysWithXpath("//input[@id='sku_id']", "SP-"+product+"-"+colour+"-"+size) //dynamic
                 .selectByXpath("//select[@id='listing_status']", "ACTIVE")

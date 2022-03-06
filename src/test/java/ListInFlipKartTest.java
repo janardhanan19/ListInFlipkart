@@ -17,10 +17,12 @@ public class ListInFlipKartTest {
         String url = "https://seller.flipkart.com/sell-online/";
         System.setProperty("webdriver.chrome.driver","C:\\ListInFlipkart\\chromedriver.exe");
         driver=new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.get(url);
         driver.manage().window().maximize();
     }
+
+    public String randomnumber="146";
 
     @Test()
     public void test()  {
@@ -28,36 +30,31 @@ public class ListInFlipKartTest {
 
         GenericWrappers genericWrappers=new GenericWrappers(driver);
         new UploadImage(driver).uploadImageForListing("D12","Blue");
-        //.uploadAttachment("/Users/jl/Downloads/drive-download-20220303T120852Z-001/BLUEBACK.jpg");  //dynamic
 
-        new PriceStockData(driver).fillPriceStockData("D12","Blue","S15");
+        new PriceStockData(driver).fillPriceStockData("D12","Blue","S"+randomnumber);
         new ProductDescription(driver).fillProductDescription("D12","Blue","S");
         new AdditionalDescription(driver).fillAdditionalDescription();
 
-//        new CreateVariant(driver).createVariantForListing("M");
-//        new UploadImage(driver).uploadImageForListing("D12","Blue");
-//        new PriceStockData(driver).fillPriceStockData("D12","Blue","M6");
-//        new ProductDescription(driver).fillProductDescription("D12","Blue","M");
-//
-//        new CreateVariant(driver).createVariantForListing("L");
-//        new UploadImage(driver).uploadImageForListing("D12","Blue");
-//        new PriceStockData(driver).fillPriceStockData("D12","Blue","L4");
-//        new ProductDescription(driver).fillProductDescription("D12","Blue","L");
-//
-//        new CreateVariant(driver).createVariantForListing("XL");
-//        new UploadImage(driver).uploadImageForListing("D12","Blue");
-//        new PriceStockData(driver).fillPriceStockData("D12","Blue","XL4");
-//        new ProductDescription(driver).fillProductDescription("D12","Blue","XL");
-
         String[] sizeVariants={"M","L","XL"};
+        String[] colourVariant={"Pink","White","Yellow"};
 
         for (int i=0;i<sizeVariants.length;i++) {
-            new CreateVariant(driver).createVariantForListing(sizeVariants[i]);
+            new CreateVariant(driver).createSizeVariantForListing(sizeVariants[i]);
             new UploadImage(driver).uploadImageForListing("D12","Blue");
-            new PriceStockData(driver).fillPriceStockData("D12","Blue",sizeVariants[i]+"45");
+            new PriceStockData(driver).fillPriceStockData("D12","Blue",sizeVariants[i]+randomnumber);
             new ProductDescription(driver).fillProductDescription("D12","Blue",sizeVariants[i]);
         }
 
+        String[] updatedSizeVariants={"S","M","L","XL"};
+
+        for (int i=0;i<colourVariant.length;i++) {
+            for (int j = 0; j < updatedSizeVariants.length; j++) {
+                new CreateVariant(driver).createColourVariantForListing(colourVariant[i],updatedSizeVariants[j] );
+                new UploadImage(driver).uploadImageForListing("D12",colourVariant[i]);
+                new PriceStockData(driver).fillPriceStockData("D12",colourVariant[i],updatedSizeVariants[j]+randomnumber);
+                new ProductDescription(driver).fillProductDescription("D12",colourVariant[i],updatedSizeVariants[j]);
+            }
+        }
 
     }
 }

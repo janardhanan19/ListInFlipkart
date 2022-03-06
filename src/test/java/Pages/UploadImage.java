@@ -29,13 +29,14 @@ public class UploadImage {
                 .waitUntil("//span[text()='Product Photos']/parent::div/parent::div/parent::div/div[2]/div/div[contains(@id,'thumbnail_1')]")
                 .clickWithXpath("//span[text()='Product Photos']/parent::div/parent::div/parent::div/div[2]/div/div[contains(@id,'thumbnail_1')]")
                 .sleep(3000)
+                .scrollToViewElement("//label/div/button[contains(@class,'BaseButton-sc-1')]/div")
                 .actionMoveToElement("//label/div/button[contains(@class,'BaseButton-sc-1')]/div")
                 .actionMouseClick()
                 .sleep(3000)
                 .fileUpload("C:\\Users\\janar\\Desktop\\LISTING1\\"+colour.toUpperCase()+"BACK.jpg", GenericWrappers.Action.WIN)
-                .sleep(3000)
+                .sleep(5000)
                 .actionMoveToElement("//span[text()='Product Photos']//parent::div/div[2]/div/div/button")
                 .actionMouseClick()
-                .sleep(5000);
+                .sleep(3000);
     }
 }
