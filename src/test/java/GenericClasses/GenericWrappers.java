@@ -31,6 +31,7 @@ public class GenericWrappers {
     }
 
     public GenericWrappers sendKeysWithXpath(String xpath,String value){
+        driver.findElement(By.xpath(xpath)).clear();
         driver.findElement(By.xpath(xpath)).sendKeys(value);
         return this;
     }
@@ -168,6 +169,12 @@ public class GenericWrappers {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        return this;
+    }
+
+    public GenericWrappers waitUntil(String xpath){
+        WebDriverWait wait = new WebDriverWait(driver,30);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
         return this;
     }
 }

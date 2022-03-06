@@ -1,8 +1,6 @@
 import GenericClasses.GenericWrappers;
 import GenericClasses.InitialSetup;
-import Pages.AdditionalDescription;
-import Pages.PriceStockData;
-import Pages.ProductDescription;
+import Pages.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeTest;
@@ -28,34 +26,38 @@ public class ListInFlipKartTest {
     public void test()  {
         new InitialSetup(driver).initialSetupForListing();
 
-        new GenericWrappers(driver)
-                .clickWithXpath("//div[contains(@class,'styles__AddProductImage')]")
-                .clickWithXpath("//div[contains(@class,'styles__ImageWrapper')]")
-                .sleep(2000)
-                .scrollToViewElement("//label/div/button[contains(@class,'BaseButton-sc-1')]/div")
-                .actionMoveToElement("//label/div/button[contains(@class,'BaseButton-sc-1')]/div")
-                .actionMouseClick()
-                .sleep(2000)
-                  //.sendKeysWithXpath("//label/div/button[contains(@class,'BaseButton-sc-1')]/div","C:\\Users\\janar\\Desktop\\LISTING1\\D12BLUE.jpg")
-//                .uploadAttachment("C:\\Users\\janar\\Desktop\\LISTING1\\D12BLUE.jpg")  //dynamic
-                .fileUpload("C:\\Users\\janar\\Desktop\\LISTING1\\D12BLUE.jpg", GenericWrappers.Action.WIN)
-                .sleep(5000)
-                .clickWithXpath("//div[contains(@class,'styles__ImageWrapper')]")
-
-                .actionMoveToElement("//label/div/button[contains(@class,'BaseButton-sc-1')]/div")
-                .actionMouseClick()
-                .sleep(3000)
-                .fileUpload("C:\\Users\\janar\\Desktop\\LISTING1\\BLUEBACK.jpg", GenericWrappers.Action.WIN)
-                .sleep(3000)
-                .actionMoveToElement("//span[text()='Product Photos']//parent::div/div[2]/div/div/button")
-                .actionMouseClick()
-                .sleep(3000);
-
+        GenericWrappers genericWrappers=new GenericWrappers(driver);
+        new UploadImage(driver).uploadImageForListing("D12","Blue");
         //.uploadAttachment("/Users/jl/Downloads/drive-download-20220303T120852Z-001/BLUEBACK.jpg");  //dynamic
 
-        new PriceStockData(driver).fillPriceStockData("D12","Blue","S2");
+        new PriceStockData(driver).fillPriceStockData("D12","Blue","S15");
         new ProductDescription(driver).fillProductDescription("D12","Blue","S");
         new AdditionalDescription(driver).fillAdditionalDescription();
+
+//        new CreateVariant(driver).createVariantForListing("M");
+//        new UploadImage(driver).uploadImageForListing("D12","Blue");
+//        new PriceStockData(driver).fillPriceStockData("D12","Blue","M6");
+//        new ProductDescription(driver).fillProductDescription("D12","Blue","M");
+//
+//        new CreateVariant(driver).createVariantForListing("L");
+//        new UploadImage(driver).uploadImageForListing("D12","Blue");
+//        new PriceStockData(driver).fillPriceStockData("D12","Blue","L4");
+//        new ProductDescription(driver).fillProductDescription("D12","Blue","L");
+//
+//        new CreateVariant(driver).createVariantForListing("XL");
+//        new UploadImage(driver).uploadImageForListing("D12","Blue");
+//        new PriceStockData(driver).fillPriceStockData("D12","Blue","XL4");
+//        new ProductDescription(driver).fillProductDescription("D12","Blue","XL");
+
+        String[] sizeVariants={"M","L","XL"};
+
+        for (int i=0;i<sizeVariants.length;i++) {
+            new CreateVariant(driver).createVariantForListing(sizeVariants[i]);
+            new UploadImage(driver).uploadImageForListing("D12","Blue");
+            new PriceStockData(driver).fillPriceStockData("D12","Blue",sizeVariants[i]+"45");
+            new ProductDescription(driver).fillProductDescription("D12","Blue",sizeVariants[i]);
+        }
+
 
     }
 }
