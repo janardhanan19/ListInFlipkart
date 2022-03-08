@@ -45,6 +45,7 @@ public class ProductDescription {
                 .waitUntilElementIsVisible("//span[text()='Product Description']//parent::div/div[2]/div/div/button")
                 .actionMoveToElement("//span[text()='Product Description']//parent::div/div[2]/div/div/button")
                 .actionMouseClick()
-                .sleep(3000);
+                .sleep(1000)
+                .waitUntilElementIsPresent("//span[contains(text(),'Product Description')]/parent::div/div[2]/button");
     }
 }

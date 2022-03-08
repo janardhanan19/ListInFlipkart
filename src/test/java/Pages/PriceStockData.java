@@ -63,7 +63,8 @@ public class PriceStockData {
         new GenericWrappers(driver)
                 .actionMoveToElement("//span[text()='Price, Stock and Shipping Information']//parent::div/div[2]/div/div/button")
                 .actionMouseClick()
-                .sleep(5000);
+                .sleep(2000)
+                .waitUntilElementIsPresent("//span[contains(text(),'Price, Stock and Shipping Information')]/parent::div/div[2]/button");
     }
 }
 

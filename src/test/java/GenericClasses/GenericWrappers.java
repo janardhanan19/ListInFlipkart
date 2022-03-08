@@ -168,6 +168,18 @@ public class GenericWrappers {
         return this;
     }
 
+    public GenericWrappers waitUntilElementIsPresent(String xpath) {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
+        return this;
+    }
+
+    public GenericWrappers waitUntilElementIsNotPresent(String xpath) {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(xpath)));
+        return this;
+    }
+
 
     public GenericWrappers waitUntilElementIsVisible(String xpath) {
         WebDriverWait wait = new WebDriverWait(driver, 30);
