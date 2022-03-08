@@ -5,15 +5,20 @@ import org.openqa.selenium.WebDriver;
 
 public class CreateVariant {
     WebDriver driver;
+
     public CreateVariant(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void createSizeVariantForListing(String size){
+    public void createSizeVariantForListing(String size) {
         new GenericWrappers(driver)
-                .clickWithXpath("//button[text()='Create Variant']")
+                .sleep(2000)
+                .clickWithXpathWhenEnabled("//button[text()='Create Variant']")
+                .sleep(2000)
+//                .switchWindow()
+//                .sleep(1000)
                 .clickWithXpath("//div[text()='Size']/parent::div/div[2]/button[text()='Create New']")
-                .selectByXpath("//select[@name='default']",size)
+                .selectByXpath("//select[@name='default']", size)
                 .clickWithXpath("//button[text()='Create']")
                 .clickWithXpath("//button[text()='Create Product Variant']")
                 .actionMoveToElement("//button[text()='Create Variant']/following-sibling::i")
@@ -21,19 +26,22 @@ public class CreateVariant {
                 .sleep(2000);
     }
 
-    public void createColourVariantForListing(String colour,String size){
+    public void createColourVariantForListing(String colour, String size) {
         new GenericWrappers(driver)
-                .waitUntil("//button[text()='Create Variant']")
                 .sleep(2000)
-                .clickWithXpath("//button[text()='Create Variant']")
+                .actionMoveToElement("//button[text()='Create Variant']/following-sibling::i")
+                .actionMouseClick()
+                .sleep(2000)
+                .clickWithXpathWhenEnabled("//button[text()='Create Variant']")
                 .sleep(2000)
                 .clickWithXpath("//div[text()='Brand Color']/parent::div/div[2]/button[text()='Create New']")
-                .sendKeysWithXpath("//input[@placeholder='Enter New Brand Color']",colour)
+                .sleep(2000)
+                .sendKeysWithXpath("//input[@placeholder='Enter New Brand Color']", colour)
                 .clickWithXpath("//button[text()='Create']")
-                .clickWithXpath("//button[text()='"+size+"']")
+                .clickWithXpath("//button[text()='" + size + "']")
                 .clickWithXpath("//button[text()='Create Product Variant']")
                 .actionMoveToElement("//button[text()='Create Variant']/following-sibling::i")
                 .actionMouseClick()
-                .sleep(2000);
+                .sleep(1000);
     }
 }
