@@ -18,7 +18,6 @@ public class InitialSetup {
                 .sendKeysWithXpath("//input[@placeholder='Enter password']", "Shopsy@123")
                 .clickWithXpath("//span[text()='Login']")
 
-                //navigate to listing
                 .sleep(2000)
                 .actionMoveToElement("//li[@id='Listings']")
                 .actionMoveToElement("//a[text()='Add New Listings']")
@@ -37,7 +36,6 @@ public class InitialSetup {
                 .clickWithXpath("//span[text()='Select Brand']")
                 .sendKeysWithXpath("//input[@placeholder='Enter Brand Name']", "//span[text()='Rustic Indi Fashion']")
                 .clickWithXpath("//span[text()='Check Brand']")
-//                .clickWithXpath("//span[text()='Rustic Indi Fashion']")
                 .clickWithXpath("//button[text()='Create New Listing']");
 
     }

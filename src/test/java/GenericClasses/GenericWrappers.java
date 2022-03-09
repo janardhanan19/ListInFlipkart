@@ -21,10 +21,6 @@ public class GenericWrappers {
         actions = new Actions(driver);
     }
 
-    public GenericWrappers() {
-
-    }
-
     public GenericWrappers sendKeysWithXpath(String xpath, String value) {
         driver.findElement(By.xpath(xpath)).clear();
         driver.findElement(By.xpath(xpath)).sendKeys(value);
@@ -109,29 +105,29 @@ public class GenericWrappers {
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
             Thread.sleep(3000);
             Robot robot = new Robot();
-            if (type == Action.MAC) { // Apple's Unix-based operating system.
+            if (type == Action.MAC) {
                 driver.switchTo().window(driver.getWindowHandle());
                 robot.delay(2000);
-                //Open Goto window
+
                 robot.keyPress(KeyEvent.VK_META);
                 robot.keyPress(KeyEvent.VK_SHIFT);
                 robot.keyPress(KeyEvent.VK_G);
                 robot.keyRelease(KeyEvent.VK_META);
                 robot.keyRelease(KeyEvent.VK_SHIFT);
                 robot.keyRelease(KeyEvent.VK_G);
-                //Paste the clipboard value
+
                 robot.keyPress(KeyEvent.VK_META);
                 robot.keyPress(KeyEvent.VK_V);
                 robot.keyRelease(KeyEvent.VK_META);
                 robot.keyRelease(KeyEvent.VK_V);
-                //Press Enter key to close the Goto window and Upload window
+
                 robot.keyPress(KeyEvent.VK_ENTER);
                 robot.keyRelease(KeyEvent.VK_ENTER);
                 robot.delay(500);
                 robot.keyPress(KeyEvent.VK_ENTER);
                 robot.keyRelease(KeyEvent.VK_ENTER);
                 return this;
-            } else if (type == Action.WIN || type == Action.LINUX) { // Ctrl + V to paste the content.
+            } else if (type == Action.WIN || type == Action.LINUX) {
 
                 robot.keyPress(KeyEvent.VK_CONTROL);
                 robot.keyPress(KeyEvent.VK_V);
@@ -174,14 +170,6 @@ public class GenericWrappers {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
         return this;
-    }
-
-    public boolean isButtonEnabled(String xpath) {
-        WebDriverWait wait = new WebDriverWait(driver, 50);
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
-
-        return (driver.findElement(By.xpath(xpath)).isEnabled() && driver.findElement(By.xpath(xpath)).isDisplayed());
     }
 
     public GenericWrappers clickWithXpathWhenEnabled(String xpath) {

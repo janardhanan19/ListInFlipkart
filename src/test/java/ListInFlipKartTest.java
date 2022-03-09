@@ -30,9 +30,9 @@ public class ListInFlipKartTest {
     @Test(invocationCount = 1)
     public void test() {
         new InitialSetup(driver).initialSetupForListing();
-        String[] colourVariant = {"Blue"};
+        String[] colourVariant = {"Blue", "Pink", "White", "Yellow"};
         String product = "D12";
-        String[] updatedSizeVariants = {"S", "M"};
+        String[] updatedSizeVariants = {"S", "M", "L", "XL"};
 
         for (int i = 0; i < colourVariant.length; i++) {
             if (i == 0) {
@@ -60,8 +60,6 @@ public class ListInFlipKartTest {
             }
         }
         randomnumber = String.valueOf(Integer.valueOf(randomnumber) + 1);
-        new GenericWrappers(driver)
-                .closeDriver();
     }
 
     @AfterMethod

@@ -16,7 +16,6 @@ public class PriceStockData {
 
     public void fillPriceStockData(String product, String colour, String size, boolean firstTime) {
 
-
         new GenericWrappers(driver)
                 .sleep(3000)
                 .waitUntil("//span[text()='Price, Stock and Shipping Information']//parent::div/div/button")
