@@ -32,38 +32,31 @@ public class GenericWrappers {
     }
 
     public GenericWrappers clickWithXpath(String xpath) {
-        if (xpath.contains("Create New") && xpath.contains("Size") ) {
+        if (xpath.contains("Create New") && xpath.contains("Size")) {
             try {
-                driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+                driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
                 driver.findElement(By.xpath(xpath)).click();
             } catch (NoSuchElementException e) {
                 new GenericWrappers(driver)
                         .clickWithXpathWhenEnabled("//button[text()='Create Variant']")
                         .sleep(2000)
-                        .clickWithXpath("//div[text()='Size']/parent::div/div[2]/button[text()='Create New']")
-                        .sleep(2000);
-                e.printStackTrace();
-                System.out.println("Failed due to:"+e.getMessage());
-                driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+                        .clickWithXpath("//div[text()='Size']/parent::div/div[2]/button[text()='Create New']");
+                driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
             }
-        }
-        else if (xpath.contains("Create New") && xpath.contains("Brand Color") ) {
+        } else if (xpath.contains("Create New") && xpath.contains("Brand Color")) {
             try {
-                driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+                driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
                 driver.findElement(By.xpath(xpath)).click();
             } catch (NoSuchElementException e) {
                 new GenericWrappers(driver)
                         .clickWithXpathWhenEnabled("//button[text()='Create Variant']")
                         .sleep(2000)
-                        .clickWithXpath("//div[text()='Brand Color']/parent::div/div[2]/button[text()='Create New']")
-                        .sleep(2000);
-                e.printStackTrace();
-                driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+                        .clickWithXpath("//div[text()='Brand Color']/parent::div/div[2]/button[text()='Create New']");
+                driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
             }
-        }
-        else {
+        } else {
             driver.findElement(By.xpath(xpath)).click();
-            driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         }
         return this;
     }
@@ -106,18 +99,15 @@ public class GenericWrappers {
         return this;
     }
 
-    public enum Action {
-        WIN, MAC, LINUX;
-    }
-
     public GenericWrappers fileUpload(String filePath, Action type) {
 
         try {
             Thread.sleep(1000 * 2);
 
             StringSelection stringSelection = new StringSelection(filePath);
+            Thread.sleep(1000 * 2);
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
-            Thread.sleep(2000);
+            Thread.sleep(3000);
             Robot robot = new Robot();
             if (type == Action.MAC) { // Apple's Unix-based operating system.
                 driver.switchTo().window(driver.getWindowHandle());
@@ -180,7 +170,6 @@ public class GenericWrappers {
         return this;
     }
 
-
     public GenericWrappers waitUntilElementIsVisible(String xpath) {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
@@ -188,7 +177,7 @@ public class GenericWrappers {
     }
 
     public boolean isButtonEnabled(String xpath) {
-        WebDriverWait wait=new WebDriverWait(driver,50);
+        WebDriverWait wait = new WebDriverWait(driver, 50);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
 
@@ -196,12 +185,12 @@ public class GenericWrappers {
     }
 
     public GenericWrappers clickWithXpathWhenEnabled(String xpath) {
-        while (isButtonEnabled(xpath) == false) {
-            isButtonEnabled(xpath);
-            break;
-        }
         driver.findElement(By.xpath(xpath)).click();
         return this;
+    }
+
+    public enum Action {
+        WIN, MAC, LINUX
     }
 
 }

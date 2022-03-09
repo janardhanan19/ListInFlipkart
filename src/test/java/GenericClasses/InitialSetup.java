@@ -1,15 +1,15 @@
 package GenericClasses;
 
-import GenericClasses.GenericWrappers;
 import org.openqa.selenium.WebDriver;
 
 public class InitialSetup {
     WebDriver driver;
-    public InitialSetup(WebDriver driver){
-        this.driver=driver;
+
+    public InitialSetup(WebDriver driver) {
+        this.driver = driver;
     }
 
-    public void initialSetupForListing(){
+    public void initialSetupForListing() {
         //login
         new GenericWrappers(driver)
                 .clickWithXpath("//span[text()='Login for existing sellers']")
@@ -24,7 +24,7 @@ public class InitialSetup {
                 .actionMoveToElement("//a[text()='Add New Listings']")
                 .actionMouseClick()
 
-                .sleep(3000)
+                .sleep(1000)
                 .clickWithXpath("//div[@class=\"__floater__body\"]//button[@title=\"Last\"]")
                 .clickWithXpath("//div[@class=\"__floater__body\"]//button[@title=\"Don't show again\"]")
                 .clickWithXpath("//button[@data-testid='group-buttons-btn-1']/span")
@@ -33,9 +33,9 @@ public class InitialSetup {
                 .clickWithXpath("//button[text()='Close']")
                 .clickWithXpath("//div[contains(@class,'styles__VerticalCard')]")
 
-                .sleep(4000)
+                .sleep(2000)
                 .clickWithXpath("//span[text()='Select Brand']")
-                .sendKeysWithXpath("//input[@placeholder='Enter Brand Name']","//span[text()='Rustic Indi Fashion']")
+                .sendKeysWithXpath("//input[@placeholder='Enter Brand Name']", "//span[text()='Rustic Indi Fashion']")
                 .clickWithXpath("//span[text()='Check Brand']")
 //                .clickWithXpath("//span[text()='Rustic Indi Fashion']")
                 .clickWithXpath("//button[text()='Create New Listing']");

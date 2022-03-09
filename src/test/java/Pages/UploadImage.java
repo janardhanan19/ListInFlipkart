@@ -17,7 +17,6 @@ public class UploadImage {
     public void uploadImageForListing(String product, String colour, boolean firstTime) {
         if (!firstTime) {
             new GenericWrappers(driver)
-                    .sleep(2000)
                     .actionMoveToElement("//button[text()='Create Variant']/following-sibling::i")
                     .actionMouseClick()
                     .sleep(2000);
@@ -35,7 +34,6 @@ public class UploadImage {
                 .waitUntil("//span[text()='Product Photos']/parent::div/parent::div/parent::div/div[2]/div/div[contains(@id,'thumbnail_1')]")
                 .clickWithXpath("//span[text()='Product Photos']/parent::div/parent::div/parent::div/div[2]/div/div[contains(@id,'thumbnail_1')]")
                 .waitUntilElementIsNotPresent("//label/div/button[contains(@class,'BaseButton-sc-1')]/div")
-                .sleep(2000)
                 .scrollToViewElement("//label/div/button[contains(@class,'BaseButton-sc-1')]/div")
                 .actionMoveToElement("//label/div/button[contains(@class,'BaseButton-sc-1')]/div")
                 .actionMouseClick()
@@ -44,7 +42,6 @@ public class UploadImage {
                 .sleep(5000)
                 .actionMoveToElement("//span[text()='Product Photos']//parent::div/div[2]/div/div/button")
                 .actionMouseClick()
-                .sleep(1000)
                 .waitUntilElementIsPresent("//span[contains(text(),'Product Photos')]/parent::div/div[2]/button");
     }
 }

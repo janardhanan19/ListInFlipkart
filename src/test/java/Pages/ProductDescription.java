@@ -24,7 +24,7 @@ public class ProductDescription {
         if (firstTime) {
             new GenericWrappers(driver)
                     .waitUntilElementIsVisible("//input[@id='style_code']")
-                    .sendKeysWithXpath("//input[@id='style_code']", product.substring(0, 1) + "0" + product.substring(1));
+                    .sendKeysWithXpath("//input[@id='style_code']", product.charAt(0) + "0" + product.substring(1));
         }
         new GenericWrappers(driver)
                 .selectByXpath("//select[@id='size']", size)
