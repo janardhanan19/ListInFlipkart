@@ -1,3 +1,4 @@
+import Data.Data;
 import GenericClasses.GenericWrappers;
 import GenericClasses.InitialSetup;
 import Pages.*;
@@ -12,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 @Test
 public class ListInFlipKartTest {
-    public static String randomnumber = "1240";
+    public static String randomnumber = "1245";
     WebDriver driver;
 
     //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
@@ -27,26 +28,32 @@ public class ListInFlipKartTest {
         driver.manage().window().maximize();
     }
 
-    @Test(invocationCount = 1)
-    public void test() {
+    @Test(dataProvider = "listingData",dataProviderClass = Data.class)
+    public void test(String product, String sizes, String colour) {
         new InitialSetup(driver).initialSetupForListing();
-        String[] colourVariant = {"Blue", "Pink", "White", "Yellow"};
-        String product = "D12";
-        String[] updatedSizeVariants = {"S", "M", "L", "XL"};
+        String[] colourVariant = colour.split(",");
+        String productName = product;
+        String[] updatedSizeVariants = sizes.split(",");
+
+        System.out.println(product);
+        for(int i=0;i<colourVariant.length;i++)
+            System.out.println(colourVariant[i]);
+        for(int i=0;i<updatedSizeVariants.length;i++)
+            System.out.println(updatedSizeVariants[i]);
 
         for (int i = 0; i < colourVariant.length; i++) {
             if (i == 0) {
                 for (int j = 0; j < updatedSizeVariants.length; j++) {
                     if (j != 0) {
                         new CreateVariant(driver).createSizeVariantForListing(updatedSizeVariants[j]);
-                        new UploadImage(driver).uploadImageForListing(product, colourVariant[i]);
-                        new PriceStockData(driver).fillPriceStockData(product, colourVariant[i], updatedSizeVariants[j] + randomnumber);
-                        new ProductDescription(driver).fillProductDescription(product, colourVariant[i], updatedSizeVariants[j]);
+                        new UploadImage(driver).uploadImageForListing(productName, colourVariant[i]);
+                        new PriceStockData(driver).fillPriceStockData(productName, colourVariant[i], updatedSizeVariants[j] + randomnumber);
+                        new ProductDescription(driver).fillProductDescription(productName, colourVariant[i], updatedSizeVariants[j]);
                     }
                     if (j == 0) {
-                        new UploadImage(driver).uploadImageForListing(product, colourVariant[i], true);
-                        new PriceStockData(driver).fillPriceStockData(product, colourVariant[i], updatedSizeVariants[j] + randomnumber, true);
-                        new ProductDescription(driver).fillProductDescription(product, colourVariant[i], updatedSizeVariants[j], true);
+                        new UploadImage(driver).uploadImageForListing(productName, colourVariant[i], true);
+                        new PriceStockData(driver).fillPriceStockData(productName, colourVariant[i], updatedSizeVariants[j] + randomnumber, true);
+                        new ProductDescription(driver).fillProductDescription(productName, colourVariant[i], updatedSizeVariants[j], true);
                         new AdditionalDescription(driver).fillAdditionalDescription();
                     }
                 }
