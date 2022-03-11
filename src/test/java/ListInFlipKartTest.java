@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 @Test
 public class ListInFlipKartTest {
-    public static String randomnumber = "1245";
+    public static String randomnumber = "";
     WebDriver driver;
 
     //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
@@ -35,12 +35,6 @@ public class ListInFlipKartTest {
         String productName = product;
         String[] updatedSizeVariants = sizes.split(",");
 
-        System.out.println(product);
-        for(int i=0;i<colourVariant.length;i++)
-            System.out.println(colourVariant[i]);
-        for(int i=0;i<updatedSizeVariants.length;i++)
-            System.out.println(updatedSizeVariants[i]);
-
         for (int i = 0; i < colourVariant.length; i++) {
             if (i == 0) {
                 for (int j = 0; j < updatedSizeVariants.length; j++) {
@@ -60,13 +54,13 @@ public class ListInFlipKartTest {
             } else {
                 for (int j = 0; j < updatedSizeVariants.length; j++) {
                     new CreateVariant(driver).createColourVariantForListing(colourVariant[i], updatedSizeVariants[j]);
-                    new UploadImage(driver).uploadImageForListing("D12", colourVariant[i]);
-                    new PriceStockData(driver).fillPriceStockData("D12", colourVariant[i], updatedSizeVariants[j] + randomnumber);
-                    new ProductDescription(driver).fillProductDescription("D12", colourVariant[i], updatedSizeVariants[j]);
+                    new UploadImage(driver).uploadImageForListing(productName, colourVariant[i]);
+                    new PriceStockData(driver).fillPriceStockData(productName, colourVariant[i], updatedSizeVariants[j] + randomnumber);
+                    new ProductDescription(driver).fillProductDescription(productName, colourVariant[i], updatedSizeVariants[j]);
                 }
             }
         }
-        randomnumber = String.valueOf(Integer.valueOf(randomnumber) + 1);
+//        randomnumber = String.valueOf(Integer.valueOf(randomnumber) + 1);
     }
 
     @AfterMethod

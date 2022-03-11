@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
+import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.util.concurrent.TimeUnit;
@@ -102,11 +103,14 @@ public class GenericWrappers {
 
             StringSelection stringSelection = new StringSelection(filePath);
             Thread.sleep(1000 * 2);
-            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+            Clipboard board=Toolkit.getDefaultToolkit().getSystemClipboard();
+            board.setContents(stringSelection, null);
+
             Thread.sleep(3000);
             Robot robot = new Robot();
             if (type == Action.MAC) {
                 driver.switchTo().window(driver.getWindowHandle());
+                board.setContents(stringSelection, null);
                 robot.delay(2000);
 
                 robot.keyPress(KeyEvent.VK_META);

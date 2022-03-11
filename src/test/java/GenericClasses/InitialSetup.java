@@ -34,7 +34,7 @@ public class InitialSetup {
 
                 .sleep(2000)
                 .clickWithXpath("//span[text()='Select Brand']")
-                .sendKeysWithXpath("//input[@placeholder='Enter Brand Name']", "//span[text()='Rustic Indi Fashion']")
+                .sendKeysWithXpath("//input[@placeholder='Enter Brand Name']", "Rustic Indi Fashion")
                 .clickWithXpath("//span[text()='Check Brand']")
                 .clickWithXpath("//button[text()='Create New Listing']");
 

@@ -26,7 +26,7 @@ public class PriceStockData {
                     .selectByXpath("//select[@id='listing_status']", "ACTIVE");
         }
         new GenericWrappers(driver)
-                .sendKeysWithXpath("//input[@id='mrp']", "999")
+                .sendKeysWithXpath("//input[@id='mrp']", "799")
                 .sendKeysWithXpath("//input[@id='flipkart_selling_price']", "199");
         if (firstTime) {
 
@@ -36,7 +36,7 @@ public class PriceStockData {
         }
         new GenericWrappers(driver)
                 .scrollToViewElement("//div[text()='Procurement SLA']")
-                .sendKeysWithXpath("//input[@id='shipping_days']", "1")
+                .sendKeysWithXpath("//input[@id='shipping_days']", "2")
                 .sendKeysWithXpath("//input[@id='stock_size']", "10");
         if (firstTime) {
             new GenericWrappers(driver)
