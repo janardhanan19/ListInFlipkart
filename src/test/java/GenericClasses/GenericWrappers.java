@@ -148,10 +148,6 @@ public class GenericWrappers {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (UnsupportedFlavorException e) {
-            e.printStackTrace();
         }
         return this;
     }
