@@ -48,7 +48,7 @@ public class PriceStockData {
 
                     .sendKeysWithXpath("//input[@id='package_weight']", "0.30")
                     .sendKeysWithXpath("//input[@id='package_length']", "36")
-                    .sendKeysWithXpath("//input[@id='package_breadth']", "13")
+                    .sendKeysWithXpath("//input[@id='package_breadth']", "30")
                     .sendKeysWithXpath("//input[@id='package_height']", "0.5")
                     .scrollToViewElement("//div[text()='Tax Code']")
 

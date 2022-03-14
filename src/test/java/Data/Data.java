@@ -30,10 +30,10 @@ public class Data {
 //                {"D65", "S,M,L,XL", "Pink,White"},
 //                {"D66", "S,M,L,XL", "White,Pink"},
 //                {"D67", "S,M,L,XL", "White,Yellow"},
-//                {"D68", "S,M,L,XL", "White,Yellow"},
-//                {"D69", "S,M,L,XL", "Yellow,White,Pink,Blue"},
-//                {"D70", "S,M,L,XL", "White,Pink,Yellow"},
-//                {"D71", "S,M,L,XL", "Yellow,White,Pink,Blue"},
+//                {"D68", "S,M,L,XL", "White,Pink"},
+                {"D69", "S,M,L,XL", "Yellow,White,Pink,Blue"},
+                {"D70", "S,M,L,XL", "White,Pink,Yellow"},
+                {"D71", "S,M,L,XL", "Yellow,White,Pink,Blue"},
         };
 
     }

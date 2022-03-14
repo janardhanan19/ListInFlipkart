@@ -7,9 +7,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.*;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class GenericWrappers {
@@ -148,30 +148,34 @@ public class GenericWrappers {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (UnsupportedFlavorException e) {
+            e.printStackTrace();
         }
         return this;
     }
 
     public GenericWrappers waitUntil(String xpath) {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
+        WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
         return this;
     }
 
     public GenericWrappers waitUntilElementIsPresent(String xpath) {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
+        WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
         return this;
     }
 
     public GenericWrappers waitUntilElementIsNotPresent(String xpath) {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
+        WebDriverWait wait = new WebDriverWait(driver, 5);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(xpath)));
         return this;
     }
 
     public GenericWrappers waitUntilElementIsVisible(String xpath) {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
+        WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
         return this;
     }
