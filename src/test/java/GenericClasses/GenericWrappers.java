@@ -45,11 +45,16 @@ public class GenericWrappers {
                 driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
                 driver.findElement(By.xpath(xpath)).click();
             } catch (NoSuchElementException e) {
-                new GenericWrappers(driver)
-                        .clickWithXpathWhenEnabled("//button[text()='Create Variant']")
-                        .sleep(2000)
-                        .clickWithXpath("//div[text()='Brand Color']/parent::div/div[2]/button[text()='Create New']");
-                driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+                try {
+                    new GenericWrappers(driver)
+                            .clickWithXpathWhenEnabled("//button[text()='Create Variant']")
+                            .sleep(2000)
+                            .clickWithXpath("//div[text()='Brand Color']/parent::div/div[2]/button[text()='Create New']");
+                    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+                }
+                catch (Exception exception){
+                    driver.close();
+                }
             }
         } else {
             driver.findElement(By.xpath(xpath)).click();
